@@ -19,4 +19,5 @@ spec:
               script: |
                 #!/bin/sh
                 echo "✅ Docs pipeline running!"
-                echo "This should ONLY run when docs/ files change"
+                echo "failing pipeline"
+                exit 1
