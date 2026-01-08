@@ -14,9 +14,15 @@ spec:
       - name: docs-task
         taskSpec:
           steps:
+            # - name: echo-docs
+            #   image: registry.access.redhat.com/ubi9/ubi-minimal
+            #   script: |
+            #     #!/bin/sh
+            #     echo "✅ Docs pipeline running!"
+            #     echo "This should ONLY run when docs/ files change"
             - name: echo-docs
               image: registry.access.redhat.com/ubi9/ubi-minimal
               script: |
                 #!/bin/sh
-                echo "✅ Docs pipeline running!"
-                echo "This should ONLY run when docs/ files change"
+                echo "Intentionally failing"
+                exit 1
