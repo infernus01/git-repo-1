@@ -1,0 +1,17 @@
+
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: test
+  annotations:
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push"
+spec:
+  pipelineSpec:
+    tasks:
+      - name: echo
+        taskSpec:
+          steps:
+            - name: step
+              image: alpine
+              script: |
+                echo "Hello"
