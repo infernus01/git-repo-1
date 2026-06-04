@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: build-image
+  annotations:
+    pipelinesascode.tekton.dev/on-event: "[push]"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/max-keep-runs: "2"
+spec:
+  pipelineSpec:
+    tasks:
+      - name: build
+        taskSpec:
+          steps:
+            - name: build
+              image: registry.access.redhat.com/ubi9/ubi-minimal
+              script: |
+                echo "Building image for $(context.pipelineRun.name)"
+                echo "SHA: {{ revision }}"
